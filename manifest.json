@@ -1,0 +1,224 @@
+{
+  "name": "cortex-plugin-notion",
+  "version": "1.0.0",
+  "description": "Bidirectional sync between Cortex sessions and Notion — query databases, create and update pages, search workspaces, and sync agent memories to Notion documents",
+  "kind": "esm",
+  "entryPoint": "mod.ts",
+  "runtime": "deno",
+  "author": "CortexPrism",
+  "license": "MIT",
+  "repository": "https://github.com/CortexPrism/cortex-plugin-notion",
+  "homepage": "https://cortexprism.io/marketplace/plugins/notion",
+  "capabilities": [
+    "tools",
+    "network:fetch"
+  ],
+  "tools": [
+    {
+      "name": "notion_query_database",
+      "description": "Query a Notion database with filters and sorts. Returns matching pages as structured JSON.",
+      "params": [
+        {
+          "name": "database_id",
+          "type": "string",
+          "description": "Notion database ID (UUID from the database URL)",
+          "required": true
+        },
+        {
+          "name": "filter",
+          "type": "string",
+          "description": "JSON string of Notion filter object (see Notion API docs). Leave empty for all pages.",
+          "required": false
+        },
+        {
+          "name": "sorts",
+          "type": "string",
+          "description": "JSON string of Notion sorts array",
+          "required": false
+        },
+        {
+          "name": "page_size",
+          "type": "number",
+          "description": "Number of results per page (default: 100, max: 100)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "notion_get_page",
+      "description": "Retrieve a Notion page by ID with all its block content.",
+      "params": [
+        {
+          "name": "page_id",
+          "type": "string",
+          "description": "Notion page ID (UUID from the page URL)",
+          "required": true
+        },
+        {
+          "name": "include_children",
+          "type": "boolean",
+          "description": "Whether to include child blocks (default: true)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "notion_create_page",
+      "description": "Create a new page in a Notion database or as a standalone page.",
+      "params": [
+        {
+          "name": "parent_id",
+          "type": "string",
+          "description": "Parent database ID or parent page ID",
+          "required": true
+        },
+        {
+          "name": "parent_type",
+          "type": "string",
+          "description": "Type of parent",
+          "required": true,
+          "enum": ["database", "page"]
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "description": "Page title",
+          "required": true
+        },
+        {
+          "name": "properties",
+          "type": "string",
+          "description": "JSON string of Notion page properties (for database children)",
+          "required": false
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "description": "Markdown content to convert to Notion blocks in the page body",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "notion_update_page",
+      "description": "Update an existing Notion page's properties and/or content.",
+      "params": [
+        {
+          "name": "page_id",
+          "type": "string",
+          "description": "Notion page ID to update",
+          "required": true
+        },
+        {
+          "name": "properties",
+          "type": "string",
+          "description": "JSON string of properties to update",
+          "required": false
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "description": "Markdown content to append or replace",
+          "required": false
+        },
+        {
+          "name": "mode",
+          "type": "string",
+          "description": "How to handle content: append to existing or replace",
+          "required": false,
+          "enum": ["append", "replace"]
+        }
+      ]
+    },
+    {
+      "name": "notion_search",
+      "description": "Search across the Notion workspace for pages and databases matching a query.",
+      "params": [
+        {
+          "name": "query",
+          "type": "string",
+          "description": "Search query text",
+          "required": true
+        },
+        {
+          "name": "filter_type",
+          "type": "string",
+          "description": "Filter results to only pages or databases",
+          "required": false,
+          "enum": ["page", "database"]
+        },
+        {
+          "name": "page_size",
+          "type": "number",
+          "description": "Number of results (default: 20)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "notion_list_databases",
+      "description": "List all databases accessible to the integration, with titles and IDs for use with other tools.",
+      "params": [
+        {
+          "name": "page_size",
+          "type": "number",
+          "description": "Number of results (default: 100)",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "notion_sync_memory",
+      "description": "Sync Cortex session memories and summaries to a Notion database. Creates or updates entries for each memory item.",
+      "params": [
+        {
+          "name": "database_id",
+          "type": "string",
+          "description": "Target Notion database ID for syncing memories",
+          "required": true
+        },
+        {
+          "name": "memories",
+          "type": "string",
+          "description": "JSON array of memory objects with title, content, tags, and timestamp",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "peerDependencies": {
+    "cortex": ">=1.0.0"
+  },
+  "ui": {
+    "settings": [
+      {
+        "section": "Authentication",
+        "fields": [
+          {
+            "key": "notionToken",
+            "label": "Notion Integration Token",
+            "type": "secret",
+            "description": "Notion internal integration secret (from https://www.notion.so/my-integrations)"
+          }
+        ]
+      },
+      {
+        "section": "Defaults",
+        "fields": [
+          {
+            "key": "defaultDatabaseId",
+            "label": "Default Database ID",
+            "type": "text",
+            "description": "Default Notion database ID to use when none is specified"
+          }
+        ]
+      }
+    ]
+  },
+  "aiDisclosure": {
+    "tools": [
+      "Claude Code (Anthropic) — initial scaffold and implementation"
+    ],
+    "humanReview": true
+  }
+}

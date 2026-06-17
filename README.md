@@ -1,6 +1,7 @@
 # CortexPrism Notion Sync Plugin
 
-Bidirectional sync between Cortex sessions and Notion — query databases, create and update pages, search workspaces, and sync agent memories to Notion documents.
+Bidirectional sync between Cortex sessions and Notion — query databases, create and update pages,
+search workspaces, and sync agent memories to Notion documents.
 
 ## Installation
 
@@ -28,19 +29,21 @@ cortex plugin install .
 ### 2. Grant Database Access
 
 For each database you want Cortex to access:
+
 1. Open the database in Notion
 2. Click `...` → **Connections** → Add your CortexPrism integration
 
 ### 3. Configure the Plugin
 
-| Setting | Type | Default | Description |
-|---------|------|---------|-------------|
-| `notionToken` | string (secret) | — | Notion integration token from my-integrations page |
-| `defaultDatabaseId` | string | — | Default database ID for operations |
+| Setting             | Type            | Default | Description                                        |
+| ------------------- | --------------- | ------- | -------------------------------------------------- |
+| `notionToken`       | string (secret) | —       | Notion integration token from my-integrations page |
+| `defaultDatabaseId` | string          | —       | Default database ID for operations                 |
 
 ## Tools
 
 ### `notion_query_database`
+
 Query a Notion database with filters and sorts.
 
 ```json
@@ -52,6 +55,7 @@ Query a Notion database with filters and sorts.
 ```
 
 ### `notion_get_page`
+
 Retrieve a Notion page with all block content.
 
 ```json
@@ -62,6 +66,7 @@ Retrieve a Notion page with all block content.
 ```
 
 ### `notion_create_page`
+
 Create a new page in a database or as a standalone page.
 
 ```json
@@ -74,6 +79,7 @@ Create a new page in a database or as a standalone page.
 ```
 
 ### `notion_update_page`
+
 Update an existing page's properties and/or content.
 
 ```json
@@ -86,6 +92,7 @@ Update an existing page's properties and/or content.
 ```
 
 ### `notion_search`
+
 Search across the Notion workspace.
 
 ```json
@@ -97,6 +104,7 @@ Search across the Notion workspace.
 ```
 
 ### `notion_list_databases`
+
 List all databases accessible to the integration.
 
 ```json
@@ -104,6 +112,7 @@ List all databases accessible to the integration.
 ```
 
 ### `notion_sync_memory`
+
 Sync Cortex session memories to a Notion database.
 
 ```json
@@ -127,8 +136,8 @@ Sync Cortex session memories to a Notion database.
 
 ## Capabilities
 
-| Capability | Purpose |
-|------------|---------|
+| Capability      | Purpose                                                             |
+| --------------- | ------------------------------------------------------------------- |
 | `network:fetch` | Notion API access for database queries, page management, and search |
 
 ## Development

@@ -1,7 +1,7 @@
 {
   "name": "cortex-plugin-notion",
-  "version": "1.0.1",
-  "description": "Bidirectional sync between Cortex sessions and Notion — query databases, create and update pages, search workspaces, and sync agent memories to Notion documents",
+  "version": "1.0.2",
+  "description": "Bidirectional sync between Cortex sessions and Notion \u2014 query databases, create and update pages, search workspaces, and sync agent memories to Notion documents",
   "kind": "esm",
   "entryPoint": "mod.ts",
   "runtime": "deno",
@@ -77,7 +77,10 @@
           "type": "string",
           "description": "Type of parent",
           "required": true,
-          "enum": ["database", "page"]
+          "enum": [
+            "database",
+            "page"
+          ]
         },
         {
           "name": "title",
@@ -126,7 +129,10 @@
           "type": "string",
           "description": "How to handle content: append to existing or replace",
           "required": false,
-          "enum": ["append", "replace"]
+          "enum": [
+            "append",
+            "replace"
+          ]
         }
       ]
     },
@@ -145,7 +151,10 @@
           "type": "string",
           "description": "Filter results to only pages or databases",
           "required": false,
-          "enum": ["page", "database"]
+          "enum": [
+            "page",
+            "database"
+          ]
         },
         {
           "name": "page_size",
@@ -186,6 +195,7 @@
       ]
     }
   ],
+  "dependencies": {},
   "peerDependencies": {
     "cortex": ">=1.0.0"
   },
@@ -217,7 +227,7 @@
   },
   "aiDisclosure": {
     "tools": [
-      "Claude Code (Anthropic) — initial scaffold and implementation"
+      "Claude Code (Anthropic) \u2014 initial scaffold and implementation"
     ],
     "humanReview": true
   }

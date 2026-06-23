@@ -7,7 +7,7 @@
  * #9 in the official plugin registry.
  */
 
-import type { PluginContext, Tool, ToolCallResult, ToolContext } from './types.ts';
+import type { PluginContext, Tool, ToolCallResult } from 'cortex/plugins';
 
 // ---------------------------------------------------------------------------
 // Module-level config
@@ -198,7 +198,7 @@ const notionQueryDatabase: Tool = {
     capabilities: ['network:fetch'],
   },
 
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     const toolName = 'notion_query_database';
     try {
@@ -286,7 +286,7 @@ const notionGetPage: Tool = {
     capabilities: ['network:fetch'],
   },
 
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     const toolName = 'notion_get_page';
     try {
@@ -374,7 +374,7 @@ const notionCreatePage: Tool = {
     capabilities: ['network:fetch'],
   },
 
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     const toolName = 'notion_create_page';
     try {
@@ -484,7 +484,7 @@ const notionUpdatePage: Tool = {
     capabilities: ['network:fetch'],
   },
 
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     const toolName = 'notion_update_page';
     try {
@@ -565,7 +565,7 @@ const notionSearch: Tool = {
     capabilities: ['network:fetch'],
   },
 
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     const toolName = 'notion_search';
     try {
@@ -631,7 +631,7 @@ const notionListDatabases: Tool = {
     capabilities: ['network:fetch'],
   },
 
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     const toolName = 'notion_list_databases';
     try {
@@ -702,7 +702,7 @@ const notionSyncMemory: Tool = {
     capabilities: ['network:fetch'],
   },
 
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     const toolName = 'notion_sync_memory';
     try {

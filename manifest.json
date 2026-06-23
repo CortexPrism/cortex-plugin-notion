@@ -1,6 +1,6 @@
 {
   "name": "cortex-plugin-notion",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Bidirectional sync between Cortex sessions and Notion \u2014 query databases, create and update pages, search workspaces, and sync agent memories to Notion documents",
   "kind": "esm",
   "entryPoint": "mod.ts",
@@ -197,7 +197,7 @@
   ],
   "dependencies": {},
   "peerDependencies": {
-    "cortex": ">=1.0.0"
+    "cortex": ">=0.51.0"
   },
   "ui": {
     "settings": [
